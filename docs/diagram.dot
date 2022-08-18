@@ -1,0 +1,193 @@
+digraph "Diagram" {
+  splines = "ortho";
+  pad = "1.0";
+  nodesep = "0.60";
+  ranksep = "0.75";
+  fontname = "Sans-Serif";
+  fontsize = "15";
+  dpi = "200";
+  rankdir = "BT";
+  compound = "true";
+  fontcolor = "#222222";
+  edge [
+    color = "#D5871488",
+    penwidth = 2,
+    arrowhead = "dot",
+    arrowtail = "dot",
+  ];
+  node [
+    shape = "box",
+    style = "rounded",
+    fixedsize = true,
+    width = 1.7,
+    height = 1.7,
+    labelloc = "c",
+    imagescale = true,
+    fontname = "Sans-Serif",
+    fontsize = 8,
+    margin = 8,
+  ];
+  subgraph "AWS-CDK-Template" {
+    subgraph "cluster-SubGraph.AWS-CDK-Template" {
+      graph [
+        label = "AWS-CDK-Template",
+        labelloc = "b",
+        labeljust = "l",
+        margin = "10",
+        fontsize = "16",
+        penwidth = "2",
+        pencolor = "#888888",
+        style = "filled,rounded",
+        fillcolor = "#e4e4e4",
+      ];
+      "AWS-CDK-Template/ArtifactsBucketKey" [
+        label = " ArtifactsBucketKey",
+        fontsize = 12,
+        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Key-Management-Services_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.266,
+      ];
+      "AWS-CDK-Template/ArtifactsBucket" [
+        label = " ArtifactsBucket",
+        fontsize = 12,
+        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.266,
+      ];
+      "AWS-CDK-Template/WebhookFilteredDataSharedPipeline" [
+        label = "\nWebhookFilteredDataSh",
+        fontsize = 12,
+        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_AWS-CodePipeline_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 1.2,
+        height = 1.682,
+      ];
+      "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" [
+        label = " SelfMutation",
+        fontsize = 12,
+        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_Amazon-CodeBuild_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 1.2,
+        height = 1.466,
+      ];
+      subgraph "cluster-SubGraph.Dev" {
+        graph [
+          label = "Dev",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        subgraph "cluster-SubGraph.AppStack" {
+          graph [
+            label = "AppStack",
+            labelloc = "b",
+            labeljust = "l",
+            margin = "10",
+            fontsize = "16",
+            penwidth = "2",
+            pencolor = "#888888",
+            style = "filled,rounded",
+            fillcolor = "#c7c7c7",
+          ];
+          "AWS-CDK-Template/Dev/AppStack/partnerBucket" [
+            label = " partnerBucket",
+            fontsize = 12,
+            image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 2,
+            height = 2.266,
+          ];
+        }
+      }
+      subgraph "cluster-SubGraph.Prod" {
+        graph [
+          label = "Prod",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        subgraph "cluster-SubGraph.AppStack" {
+          graph [
+            label = "AppStack",
+            labelloc = "b",
+            labeljust = "l",
+            margin = "10",
+            fontsize = "16",
+            penwidth = "2",
+            pencolor = "#888888",
+            style = "filled,rounded",
+            fillcolor = "#c7c7c7",
+          ];
+          "AWS-CDK-Template/Prod/AppStack/partnerBucket" [
+            label = " partnerBucket",
+            fontsize = 12,
+            image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 2,
+            height = 2.266,
+          ];
+        }
+      }
+    }
+  }
+  "AWS-CDK-Template/ArtifactsBucket" -> "AWS-CDK-Template/ArtifactsBucketKey" [
+    dir = "both",
+  ];
+  "AWS-CDK-Template/WebhookFilteredDataSharedPipeline" -> "AWS-CDK-Template/ArtifactsBucketKey" [
+    dir = "both",
+  ];
+  "AWS-CDK-Template/WebhookFilteredDataSharedPipeline" -> "AWS-CDK-Template/ArtifactsBucket" [
+    dir = "both",
+  ];
+  "AWS-CDK-Template/WebhookFilteredDataSharedPipeline" -> "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" [
+    dir = "both",
+  ];
+  "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" -> "AWS-CDK-Template/ArtifactsBucketKey" [
+    dir = "both",
+  ];
+  "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" -> "AWS-CDK-Template/ArtifactsBucket" [
+    dir = "both",
+  ];
+}

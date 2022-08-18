@@ -1,0 +1,21 @@
+cicd:
+  env:
+    account: '123456789012'
+    region: 'eu-west-1'
+  githubTokenArn: 'arn:aws:secretsmanager:eu-west-1:123456789012:secret:/github/codepipeline-access-token-gCEfP9'
+  repo:
+    repo: 'aws-cdk-template'
+    owner: 'nkhine'
+    branch: 'main'
+    path: ''
+    pipelineName: 'aws-cdk-pipeline'
+
+dev:
+  env:
+    account: '1234567890123'
+    region: eu-west-1
+
+production:
+  env:
+    account: '1234567890124'
+    region: 'eu-west-1'
