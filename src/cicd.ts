@@ -3,17 +3,9 @@ import {
   Stage,
   StageProps,
   SecretValue,
-  RemovalPolicy,
-  PhysicalName,
 } from 'aws-cdk-lib';
-import {
-  EventAction,
-  FilterGroup,
-} from 'aws-cdk-lib/aws-codebuild';
-import { Artifact } from 'aws-cdk-lib/aws-codepipeline';
+
 import { GitHubTrigger } from 'aws-cdk-lib/aws-codepipeline-actions';
-import { Key } from 'aws-cdk-lib/aws-kms';
-import { Bucket } from 'aws-cdk-lib/aws-s3';
 import {
   CodePipeline,
   CodePipelineSource,
@@ -23,9 +15,10 @@ import {
 import { Construct } from 'constructs';
 
 import { AppEnvConfig, RepoEntry } from './config';
+import { GithubSource } from './constructs/github-trigger';
 import { AppStack } from './stack';
 import TaggingStack from './tagging';
-import { WebhookFilteredPipeline } from './webhook-filtered-pipeline';
+
 
 interface CicdStageProps extends StageProps {
   readonly config: AppEnvConfig;
@@ -53,42 +46,11 @@ export class CicdStack extends TaggingStack {
   constructor(scope: Construct, id: string, props: CicdStackProps) {
     super(scope, id, props);
     // Webhook trigger code
-    const sourceArtifact = new Artifact();
     const oauthToken = SecretValue.secretsManager(props.githubTokenArn);
-
-    const key = new Key(this, 'ArtifactsBucketKey', {
-      removalPolicy: RemovalPolicy.DESTROY,
-    });
-
-    const bucket = new Bucket(this, 'ArtifactsBucket', {
-      autoDeleteObjects: true,
-      removalPolicy: RemovalPolicy.DESTROY,
-      bucketName: PhysicalName.GENERATE_IF_NEEDED,
-      encryptionKey: key,
-    });
-
-    const webhookPipeline = new WebhookFilteredPipeline(this, 'WebhookFilteredDataSharedPipeline', {
-      artifactBucket: bucket,
-      crossAccountKeys: true,
-      pipelineName: props.repo.pipelineName,
-      githubSourceActionProps: {
-        ...props.repo,
-        output: sourceArtifact,
-        actionName: 'Pull_Source_Code',
-        trigger: GitHubTrigger.NONE,
-        oauthToken: oauthToken,
-      },
-      restartExecutionOnUpdate: true,
-      webhookFilters: [
-        FilterGroup.inEventOf(EventAction.PUSH)
-          .andBranchIs(props.repo.branch)
-          .andFilePathIs(props.repo.path),
-      ],
-    });
-    //
     const pipeline = new CodePipeline(this, 'CDKPipeline', {
-      codePipeline: webhookPipeline,
       dockerEnabledForSynth: true,
+      pipelineName: props.repo.pipelineName,
+      crossAccountKeys: true,
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub(
           `${props.repo.owner}/${props.repo.repo}`,
@@ -131,5 +93,16 @@ export class CicdStack extends TaggingStack {
       }),
       { pre: [new ManualApprovalStep('Approve Deployment to Production')] },
     );
+    pipeline.buildPipeline();
+
+    const ghSource = new GithubSource(this, 'GithubTrigger', {
+      branch: props.repo.branch,
+      owner: props.repo.owner,
+      repo: props.repo.repo,
+      filters: [props.repo.path],
+      githubTokenArn: props.githubTokenArn,
+      codepipeline: pipeline.pipeline,
+    });
+    ghSource.node.addDependency(pipeline);
   }
 }

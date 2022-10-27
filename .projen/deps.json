@@ -1,10 +1,6 @@
 {
   "dependencies": [
     {
-      "name": "@types/jest",
-      "type": "build"
-    },
-    {
       "name": "@types/node",
       "version": "^14.17.0",
       "type": "build"
@@ -19,7 +15,7 @@
     },
     {
       "name": "aws-cdk",
-      "version": "2.4.0",
+      "version": "^2.4.0",
       "type": "build"
     },
     {
@@ -62,12 +58,12 @@
     },
     {
       "name": "@aws-cdk/assert",
-      "version": "2.4.0",
+      "version": "^2.4.0",
       "type": "runtime"
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.4.0",
+      "version": "^2.4.0",
       "type": "runtime"
     },
     {

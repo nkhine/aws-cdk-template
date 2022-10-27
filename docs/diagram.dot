@@ -40,10 +40,10 @@ digraph "Diagram" {
         style = "filled,rounded",
         fillcolor = "#e4e4e4",
       ];
-      "AWS-CDK-Template/ArtifactsBucketKey" [
-        label = " ArtifactsBucketKey",
+      "AWS-CDK-Template/SingletonLambda9548389087724e42a3ec3a06b1234567" [
+        label = "\nSingletonLambda954838",
         fontsize = 12,
-        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Key-Management-Services_64@5x.png",
+        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
         imagescale = "true",
         imagepos = "tc",
         penwidth = "0",
@@ -51,38 +51,12 @@ digraph "Diagram" {
         fixedsize = "true",
         labelloc = "b",
         width = 2,
-        height = 2.266,
+        height = 2.4819999999999998,
       ];
-      "AWS-CDK-Template/ArtifactsBucket" [
-        label = " ArtifactsBucket",
+      "AWS-CDK-Template/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole" [
+        label = " ServiceRole",
         fontsize = 12,
-        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
-        imagescale = "true",
-        imagepos = "tc",
-        penwidth = "0",
-        shape = "node",
-        fixedsize = "true",
-        labelloc = "b",
-        width = 2,
-        height = 2.266,
-      ];
-      "AWS-CDK-Template/WebhookFilteredDataSharedPipeline" [
-        label = "\nWebhookFilteredDataSh",
-        fontsize = 12,
-        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_AWS-CodePipeline_64@5x.png",
-        imagescale = "true",
-        imagepos = "tc",
-        penwidth = "0",
-        shape = "node",
-        fixedsize = "true",
-        labelloc = "b",
-        width = 1.2,
-        height = 1.682,
-      ];
-      "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" [
-        label = " SelfMutation",
-        fontsize = 12,
-        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_Amazon-CodeBuild_64@5x.png",
+        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
         imagescale = "true",
         imagepos = "tc",
         penwidth = "0",
@@ -92,6 +66,58 @@ digraph "Diagram" {
         width = 1.2,
         height = 1.466,
       ];
+      subgraph "cluster-SubGraph.CDKPipeline" {
+        graph [
+          label = "CDKPipeline",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "AWS-CDK-Template/CDKPipeline/Pipeline" [
+          label = " Pipeline",
+          fontsize = 12,
+          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_AWS-CodePipeline_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "AWS-CDK-Template/CDKPipeline/CodeBuildActionRole" [
+          label = " CodeBuildActionRole",
+          fontsize = 12,
+          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" [
+          label = " SelfMutation",
+          fontsize = 12,
+          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_Amazon-CodeBuild_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+      }
       subgraph "cluster-SubGraph.Dev" {
         graph [
           label = "Dev",
@@ -170,24 +196,79 @@ digraph "Diagram" {
           ];
         }
       }
+      subgraph "cluster-SubGraph.GithubTrigger" {
+        graph [
+          label = "GithubTrigger",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "AWS-CDK-Template/GithubTrigger/TriggerFn" [
+          label = " TriggerFn",
+          fontsize = 12,
+          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "AWS-CDK-Template/GithubTrigger/WebhookManager" [
+          label = " CloudFormation\nCustomResource\nWebhookManager",
+          fontsize = 12,
+          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Management-Governance/64/Arch_AWS-CloudFormation_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.898,
+        ];
+        "AWS-CDK-Template/GithubTrigger/WebhookManagerProvider/framework-onEvent" [
+          label = " framework-onEvent",
+          fontsize = 12,
+          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+      }
     }
   }
-  "AWS-CDK-Template/ArtifactsBucket" -> "AWS-CDK-Template/ArtifactsBucketKey" [
+  "AWS-CDK-Template/CDKPipeline/Pipeline" -> "AWS-CDK-Template/CDKPipeline/CodeBuildActionRole" [
     dir = "both",
   ];
-  "AWS-CDK-Template/WebhookFilteredDataSharedPipeline" -> "AWS-CDK-Template/ArtifactsBucketKey" [
+  "AWS-CDK-Template/CDKPipeline/Pipeline" -> "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" [
     dir = "both",
   ];
-  "AWS-CDK-Template/WebhookFilteredDataSharedPipeline" -> "AWS-CDK-Template/ArtifactsBucket" [
+  "AWS-CDK-Template/CDKPipeline/CodeBuildActionRole" -> "AWS-CDK-Template/CDKPipeline/Pipeline" [
     dir = "both",
   ];
-  "AWS-CDK-Template/WebhookFilteredDataSharedPipeline" -> "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" [
+  "AWS-CDK-Template/CDKPipeline/CodeBuildActionRole" -> "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" [
     dir = "both",
   ];
-  "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" -> "AWS-CDK-Template/ArtifactsBucketKey" [
+  "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" -> "AWS-CDK-Template/CDKPipeline/Pipeline" [
     dir = "both",
   ];
-  "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" -> "AWS-CDK-Template/ArtifactsBucket" [
+  "AWS-CDK-Template/GithubTrigger/TriggerFn" -> "AWS-CDK-Template/CDKPipeline/Pipeline" [
+    dir = "both",
+  ];
+  "AWS-CDK-Template/GithubTrigger/WebhookManagerProvider/framework-onEvent" -> "AWS-CDK-Template/SingletonLambda9548389087724e42a3ec3a06b1234567" [
     dir = "both",
   ];
 }

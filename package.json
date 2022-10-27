@@ -24,14 +24,13 @@
   "author": {
     "name": "Norman Khine",
     "email": "norman@khine.net",
-    "organization": false
+    "organization": "nkhine"
   },
   "devDependencies": {
-    "@types/jest": "^27.4.1",
     "@types/node": "^14.17.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "aws-cdk": "2.4.0",
+    "aws-cdk": "^2.4.0",
     "eslint": "^8.0.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -43,8 +42,8 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/assert": "2.4.0",
-    "aws-cdk-lib": "2.4.0",
+    "@aws-cdk/assert": "^2.4.0",
+    "aws-cdk-lib": "^2.4.0",
     "constructs": "^10.0.5",
     "yaml": "^1.10.2"
   },

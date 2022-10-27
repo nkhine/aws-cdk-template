@@ -1,7 +1,7 @@
 const { AwsCdkTypeScriptApp } = require('projen');
 const project = new AwsCdkTypeScriptApp({
   cdkVersion: '2.4.0',
-  cdkVersionPinning: true,
+  cdkVersionPinning: false,
   defaultReleaseBranch: 'main',
   name: 'aws-cdk-template',
   description:
@@ -10,22 +10,17 @@ const project = new AwsCdkTypeScriptApp({
   authorEmail: 'norman@khine.net',
   repository:
     'https://github.com/nkhine/aws-cdk-template',
+  authorOrganization: 'nkhine',
   entrypoint: 'bin/main.ts',
   licensed: false,
   gitignore: ['!lib/*.ts', '!bin/*.ts'],
-  cdkDependencies: [
-  ],
+  cdkDependencies: [],
   deps: [
     'yaml',
     // '@cloudcomponents/cdk-codepipeline-slack',
   ] /* Runtime dependencies of this module. */,
-  devDeps: [
-    '@types/jest',
-    '@types/node',
-  ] /* Build dependencies for this module. */,
-  context: {
-    '@aws-cdk/core:newStyleStackSynthesis': true,
-  },
+  devDeps: ['@types/node'] /* Build dependencies for this module. */,
+  context: {},
   dependabot: false,
   buildWorkflow: false,
   releaseWorkflow: false,
@@ -38,6 +33,6 @@ project.gitignore.removePatterns('/bin');
 project.tsconfig.compilerOptions.rootDir = 'source';
 project.tsconfig.include = ['source/**/*.ts'];
 
-// project.cdkConfig.plugin = ['cdk-assume-role-credential-plugin'];
+project.compileTask.prependExec('make');
 project.cdkConfig.app = 'npx ts-node --prefer-ts-exts bin/main.ts';
 project.synth();
