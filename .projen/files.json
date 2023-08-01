@@ -2,6 +2,9 @@
   "files": [
     ".eslintrc.json",
     ".gitattributes",
+    ".github/dependabot.yml",
+    ".github/pull_request_template.md",
+    ".github/workflows/pull-request-lint.yml",
     ".gitignore",
     ".npmignore",
     ".npmrc",

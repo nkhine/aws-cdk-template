@@ -3,6 +3,7 @@
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
+!/.github/workflows/pull-request-lint.yml
 !/package.json
 !/.npmignore
 logs
@@ -31,6 +32,8 @@ jspm_packages/
 !lib/*.ts
 !bin/*.ts
 !/.projenrc.js
+!/.github/dependabot.yml
+!/.github/pull_request_template.md
 !/.npmrc
 !/test/
 !/tsconfig.json
