@@ -1,112 +1,43 @@
 {
   "tasks": {
-    "clobber": {
-      "name": "clobber",
-      "description": "hard resets to HEAD of origin and cleans the local repo",
-      "env": {
-        "BRANCH": "$(git branch --show-current)"
-      },
-      "steps": [
-        {
-          "exec": "git checkout -b scratch",
-          "name": "save current HEAD in \"scratch\" branch"
-        },
-        {
-          "exec": "git checkout $BRANCH"
-        },
-        {
-          "exec": "git fetch origin",
-          "name": "fetch latest changes from origin"
-        },
-        {
-          "exec": "git reset --hard origin/$BRANCH",
-          "name": "hard reset to origin commit"
-        },
-        {
-          "exec": "git clean -fdx",
-          "name": "clean all untracked files"
-        },
-        {
-          "say": "ready to rock! (unpushed commits are under the \"scratch\" branch)"
-        }
-      ],
-      "condition": "git diff --exit-code > /dev/null"
-    },
-    "compile": {
-      "name": "compile",
-      "description": "Only compile",
-      "steps": [
-        {
-          "exec": "make"
-        }
-      ]
-    },
-    "test:compile": {
-      "name": "test:compile",
-      "description": "compiles the test code"
-    },
-    "test": {
-      "name": "test",
-      "description": "Run tests",
-      "steps": [
-        {
-          "spawn": "test:compile"
-        },
-        {
-          "spawn": "eslint"
-        }
-      ]
-    },
     "build": {
       "name": "build",
-      "description": "Full release build (test+compile)",
+      "description": "Full release build",
       "steps": [
         {
-          "exec": "npx projen"
+          "spawn": "default"
         },
         {
-          "spawn": "test"
+          "spawn": "pre-compile"
         },
         {
           "spawn": "compile"
         },
         {
-          "spawn": "synth"
+          "spawn": "post-compile"
+        },
+        {
+          "spawn": "test"
+        },
+        {
+          "spawn": "package"
         }
       ]
+    },
+    "bundle": {
+      "name": "bundle",
+      "description": "Prepare assets"
+    },
+    "compile": {
+      "name": "compile",
+      "description": "Only compile"
     },
     "default": {
       "name": "default",
+      "description": "Synthesize project files",
       "steps": [
         {
           "exec": "node .projenrc.js"
-        }
-      ]
-    },
-    "watch": {
-      "name": "watch",
-      "description": "Watch & compile in the background",
-      "steps": [
-        {
-          "exec": "tsc --build -w"
-        }
-      ]
-    },
-    "eslint": {
-      "name": "eslint",
-      "description": "Runs eslint against the codebase",
-      "steps": [
-        {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools .projenrc.js"
-        }
-      ]
-    },
-    "synth": {
-      "name": "synth",
-      "description": "Synthesizes your cdk app into cdk.out (part of \"yarn build\")",
-      "steps": [
-        {
-          "exec": "cdk synth"
         }
       ]
     },
@@ -115,7 +46,8 @@
       "description": "Deploys your CDK app to the AWS cloud",
       "steps": [
         {
-          "exec": "cdk deploy"
+          "exec": "cdk deploy",
+          "receiveArgs": true
         }
       ]
     },
@@ -124,7 +56,8 @@
       "description": "Destroys your cdk app in the AWS cloud",
       "steps": [
         {
-          "exec": "cdk destroy"
+          "exec": "cdk destroy",
+          "receiveArgs": true
         }
       ]
     },
@@ -137,6 +70,110 @@
         }
       ]
     },
+    "eject": {
+      "name": "eject",
+      "description": "Remove projen from the project",
+      "env": {
+        "PROJEN_EJECTING": "true"
+      },
+      "steps": [
+        {
+          "spawn": "default"
+        }
+      ]
+    },
+    "eslint": {
+      "name": "eslint",
+      "description": "Runs eslint against the codebase",
+      "steps": [
+        {
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern bin test build-tools .projenrc.js"
+        }
+      ]
+    },
+    "gen-dia": {
+      "name": "gen-dia",
+      "steps": [
+        {
+          "exec": "\n    npx cdk-dia --tree ../cdk.out/tree.json        --include AWS-CDK-Template       --include AWS-CDK-Template/Dev/AppStack       --include AWS-CDK-Template/Prod/AppStack\n  "
+        }
+      ],
+      "cwd": "./docs"
+    },
+    "install": {
+      "name": "install",
+      "description": "Install project dependencies and update lockfile (non-frozen)",
+      "steps": [
+        {
+          "exec": "yarn install --check-files"
+        }
+      ]
+    },
+    "install:ci": {
+      "name": "install:ci",
+      "description": "Install project dependencies using frozen lockfile",
+      "steps": [
+        {
+          "exec": "yarn install --check-files --frozen-lockfile"
+        }
+      ]
+    },
+    "package": {
+      "name": "package",
+      "description": "Creates the distribution package"
+    },
+    "post-compile": {
+      "name": "post-compile",
+      "description": "Runs after successful compilation",
+      "steps": [
+        {
+          "spawn": "synth:silent"
+        }
+      ]
+    },
+    "post-upgrade": {
+      "name": "post-upgrade",
+      "description": "Runs after upgrading dependencies"
+    },
+    "pre-compile": {
+      "name": "pre-compile",
+      "description": "Prepare the project for compilation"
+    },
+    "synth": {
+      "name": "synth",
+      "description": "Synthesizes your cdk app into cdk.out",
+      "steps": [
+        {
+          "exec": "cdk synth"
+        }
+      ]
+    },
+    "synth-and-gen-dia": {
+      "name": "synth-and-gen-dia",
+      "steps": [
+        {
+          "exec": "yarn projen synth && yarn projen gen-dia"
+        }
+      ]
+    },
+    "synth:silent": {
+      "name": "synth:silent",
+      "description": "Synthesizes your cdk app into cdk.out and suppresses the template in stdout (part of \"yarn build\")",
+      "steps": [
+        {
+          "exec": "cdk synth -q"
+        }
+      ]
+    },
+    "test": {
+      "name": "test",
+      "description": "Run tests",
+      "steps": [
+        {
+          "spawn": "eslint"
+        }
+      ]
+    },
     "upgrade": {
       "name": "upgrade",
       "description": "upgrade dependencies",
@@ -145,67 +182,52 @@
       },
       "steps": [
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='projen'"
+          "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='projen'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='projen'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='projen'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='projen'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor"
+        },
+        {
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk eslint eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import json-schema npm-check-updates ts-node typescript @aws-cdk/assert aws-cdk-lib constructs yaml"
+          "exec": "yarn upgrade"
         },
         {
           "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
         }
       ]
     },
-    "upgrade-projen": {
-      "name": "upgrade-projen",
-      "description": "upgrade projen",
-      "env": {
-        "CI": "0"
-      },
+    "watch": {
+      "name": "watch",
+      "description": "Watches changes in your source code and rebuilds and deploys to the current account",
       "steps": [
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --filter='projen'"
+          "exec": "cdk deploy --hotswap"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --filter='projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --filter='projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --filter='projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --filter='projen'"
-        },
-        {
-          "exec": "yarn install --check-files"
-        },
-        {
-          "exec": "yarn upgrade projen"
-        },
-        {
-          "exec": "npx projen"
+          "exec": "cdk watch"
         }
       ]
     }
   },
   "env": {
-    "PATH": "$(npx -c \"node -e \\\"console.log(process.env.PATH)\\\"\")"
+    "PATH": "$(npx -c \"node --print process.env.PATH\")"
   },
   "//": "~~ Generated by projen. To modify, edit .projenrc.js and run \"npx projen\"."
 }

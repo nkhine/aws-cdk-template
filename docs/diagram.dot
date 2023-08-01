@@ -43,7 +43,7 @@ digraph "Diagram" {
       "AWS-CDK-Template/SingletonLambda9548389087724e42a3ec3a06b1234567" [
         label = "\nSingletonLambda954838",
         fontsize = 12,
-        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+        image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
         imagescale = "true",
         imagepos = "tc",
         penwidth = "0",
@@ -56,7 +56,7 @@ digraph "Diagram" {
       "AWS-CDK-Template/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole" [
         label = " ServiceRole",
         fontsize = 12,
-        image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+        image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
         imagescale = "true",
         imagepos = "tc",
         penwidth = "0",
@@ -81,7 +81,7 @@ digraph "Diagram" {
         "AWS-CDK-Template/CDKPipeline/Pipeline" [
           label = " Pipeline",
           fontsize = 12,
-          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_AWS-CodePipeline_64@5x.png",
+          image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_AWS-CodePipeline_64@5x.png",
           imagescale = "true",
           imagepos = "tc",
           penwidth = "0",
@@ -94,7 +94,7 @@ digraph "Diagram" {
         "AWS-CDK-Template/CDKPipeline/CodeBuildActionRole" [
           label = " CodeBuildActionRole",
           fontsize = 12,
-          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+          image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
           imagescale = "true",
           imagepos = "tc",
           penwidth = "0",
@@ -107,7 +107,7 @@ digraph "Diagram" {
         "AWS-CDK-Template/CDKPipeline/UpdatePipeline/SelfMutation" [
           label = " SelfMutation",
           fontsize = 12,
-          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_Amazon-CodeBuild_64@5x.png",
+          image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Developer- Tools/64/Arch_Amazon-CodeBuild_64@5x.png",
           imagescale = "true",
           imagepos = "tc",
           penwidth = "0",
@@ -145,7 +145,7 @@ digraph "Diagram" {
           "AWS-CDK-Template/Dev/AppStack/partnerBucket" [
             label = " partnerBucket",
             fontsize = 12,
-            image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+            image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
             imagescale = "true",
             imagepos = "tc",
             penwidth = "0",
@@ -184,7 +184,7 @@ digraph "Diagram" {
           "AWS-CDK-Template/Prod/AppStack/partnerBucket" [
             label = " partnerBucket",
             fontsize = 12,
-            image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+            image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
             imagescale = "true",
             imagepos = "tc",
             penwidth = "0",
@@ -211,7 +211,7 @@ digraph "Diagram" {
         "AWS-CDK-Template/GithubTrigger/TriggerFn" [
           label = " TriggerFn",
           fontsize = 12,
-          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
           imagescale = "true",
           imagepos = "tc",
           penwidth = "0",
@@ -224,7 +224,7 @@ digraph "Diagram" {
         "AWS-CDK-Template/GithubTrigger/WebhookManager" [
           label = " CloudFormation\nCustomResource\nWebhookManager",
           fontsize = 12,
-          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Management-Governance/64/Arch_AWS-CloudFormation_64@5x.png",
+          image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Management-Governance/64/Arch_AWS-CloudFormation_64@5x.png",
           imagescale = "true",
           imagepos = "tc",
           penwidth = "0",
@@ -237,7 +237,7 @@ digraph "Diagram" {
         "AWS-CDK-Template/GithubTrigger/WebhookManagerProvider/framework-onEvent" [
           label = " framework-onEvent",
           fontsize = 12,
-          image = "/Users/norman.khine/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          image = "/home/khine/go/src/github.com/nkhine/sftp-s3/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
           imagescale = "true",
           imagepos = "tc",
           penwidth = "0",

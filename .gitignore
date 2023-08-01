@@ -2,6 +2,7 @@
 !/.gitattributes
 !/.projen/tasks.json
 !/.projen/deps.json
+!/.projen/files.json
 !/package.json
 !/.npmignore
 logs
@@ -30,14 +31,16 @@ jspm_packages/
 !lib/*.ts
 !bin/*.ts
 !/.projenrc.js
+!/.npmrc
 !/test/
 !/tsconfig.json
 !/tsconfig.dev.json
-!/src/
+!/bin/
 /lib
 /dist/
 !/.eslintrc.json
-cdk.out/
+/assets/
+!/cdk.json
+/cdk.out/
 .cdk.staging/
 .parcel-cache/
-!/cdk.json

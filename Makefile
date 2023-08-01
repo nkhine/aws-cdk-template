@@ -18,3 +18,9 @@ clear: gendirectory
 
 gendirectory:
 	mkdir -p dist
+
+dia:
+	cd docs && npx cdk-dia --tree ../cdk.out/tree.json  \
+		--include AWS-CDK-Template \
+    	--include AWS-CDK-Template/Dev/AppStack \
+    	--include AWS-CDK-Template/Prod/AppStack

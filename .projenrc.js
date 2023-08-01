@@ -1,6 +1,6 @@
-const { AwsCdkTypeScriptApp } = require('projen');
-const project = new AwsCdkTypeScriptApp({
-  cdkVersion: '2.4.0',
+const { awscdk } = require('projen');
+const project = new awscdk.AwsCdkTypeScriptApp({
+  cdkVersion: '2.89.0',
   cdkVersionPinning: false,
   defaultReleaseBranch: 'main',
   name: 'aws-cdk-template',
@@ -14,25 +14,36 @@ const project = new AwsCdkTypeScriptApp({
   entrypoint: 'bin/main.ts',
   licensed: false,
   gitignore: ['!lib/*.ts', '!bin/*.ts'],
-  cdkDependencies: [],
   deps: [
     'yaml',
-    // '@cloudcomponents/cdk-codepipeline-slack',
+    'cdk-aws-lambda-powertools-layer',
   ] /* Runtime dependencies of this module. */,
-  devDeps: ['@types/node'] /* Build dependencies for this module. */,
+  devDeps: ['@types/node', 'cdk-dia'] /* Build dependencies for this module. */,
   context: {},
   dependabot: false,
   buildWorkflow: false,
   releaseWorkflow: false,
   github: false,
   jest: false,
+  appEntrypoint: 'main.ts',
+  buildCommand: 'make',
+  clobber: false,
+  srcdir: 'bin',
 });
 
-project.gitignore.removePatterns('/src');
-project.gitignore.removePatterns('/bin');
-project.tsconfig.compilerOptions.rootDir = 'source';
-project.tsconfig.include = ['source/**/*.ts'];
+project.addTask('gen-dia', {
+  cwd: './docs',
+  exec: `
+    npx cdk-dia --tree ../cdk.out/tree.json  \
+      --include AWS-CDK-Template \
+      --include AWS-CDK-Template/Dev/AppStack \
+      --include AWS-CDK-Template/Prod/AppStack
+  `,
+});
 
-project.compileTask.prependExec('make');
-project.cdkConfig.app = 'npx ts-node --prefer-ts-exts bin/main.ts';
+// Add a new task that runs synth and then gen-dia
+project.addTask('synth-and-gen-dia', {
+  exec: 'yarn projen synth && yarn projen gen-dia',
+});
+
 project.synth();

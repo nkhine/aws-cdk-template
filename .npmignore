@@ -2,7 +2,7 @@
 /.projen/
 /test/
 /tsconfig.dev.json
-/src/
+/bin/
 !/lib/
 !/lib/**/*.js
 !/lib/**/*.d.ts
@@ -14,5 +14,6 @@ dist
 /.projenrc.js
 tsconfig.tsbuildinfo
 /.eslintrc.json
+!/assets/
 cdk.out/
 .cdk.staging/
