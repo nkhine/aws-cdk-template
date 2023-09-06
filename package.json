@@ -35,7 +35,7 @@
     "@types/node": "^16",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "aws-cdk": "^2.89.0",
+    "aws-cdk": "^2.94.0",
     "cdk-dia": "^0.10.0",
     "esbuild": "^0.18.11",
     "eslint": "^8",
@@ -47,7 +47,7 @@
     "typescript": "~3.9.10"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.89.0",
+    "aws-cdk-lib": "^2.94.0",
     "cdk-aws-lambda-powertools-layer": "^2.0.1",
     "constructs": "^10.0.5",
     "yaml": "^1.10.2"
