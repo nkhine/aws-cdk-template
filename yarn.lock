@@ -541,9 +541,9 @@ available-typed-arrays@^1.0.5:
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
 aws-cdk-lib@^2.94.0:
-  version "2.94.0"
-  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.94.0.tgz#b0e5be87611ff6628bc631dcc1f4569104124885"
-  integrity sha512-pB/UzKeM+p/wY9WuFYkEewOFUh2r8qwaML63is4vUChXY2G2Bj3pGyfJ97Xir2Q5KIhgJPJz5igdouI4+F9A+g==
+  version "2.96.2"
+  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.96.2.tgz#d9647ad402525e92740df5a083777698698fd7de"
+  integrity sha512-wDAdPUfNlteLQKrapd5c7hNYHWPzHmFfuMSrddFCajjoscsnd0LeUxM2yAzwJV7vLNp00q2SgUZqRQHcN98dmg==
   dependencies:
     "@aws-cdk/asset-awscli-v1" "^2.2.200"
     "@aws-cdk/asset-kubectl-v20" "^2.1.2"
